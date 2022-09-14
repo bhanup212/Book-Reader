@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="fragment"
+            type="com.book.reader.ui.BookSessionFragment" />
+        <variable
+            name="viewModel"
+            type="com.book.reader.ui.viewmodel.BookSessionViewModel" />
+    </data>
+   <ScrollView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:fillViewport="true">
+
+       <androidx.constraintlayout.widget.ConstraintLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           tools:context=".ui.BookSessionFragment">
+
+           <TextView
+               android:id="@+id/location_id_tv"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Location Id:"
+               app:layout_constraintBottom_toTopOf="@+id/end_session_btn"
+               app:layout_constraintEnd_toStartOf="@+id/center_guider_line"
+               app:layout_constraintHorizontal_bias="0.37"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toTopOf="parent"
+               app:layout_constraintVertical_bias="0.2"
+               android:visibility="@{viewModel.isSessionActive() ? View.VISIBLE : View.GONE}"/>
+
+           <TextView
+               android:id="@+id/location_details_tv"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Location Details:"
+               app:layout_constraintStart_toStartOf="@+id/price_tv"
+               app:layout_constraintTop_toBottomOf="@+id/price_tv"
+               android:visibility="@{viewModel.isSessionActive() ? View.VISIBLE : View.GONE}"/>
+
+           <TextView
+               android:id="@+id/price_tv"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Price Per Min:"
+               app:layout_constraintStart_toStartOf="@+id/location_id_tv"
+               app:layout_constraintTop_toBottomOf="@+id/location_id_tv"
+               android:visibility="@{viewModel.isSessionActive() ? View.VISIBLE : View.GONE}"/>
+
+           <TextView
+               android:id="@+id/location_id_value_tv"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               tools:text="ButterKnife"
+               android:text="@{viewModel.bookDetails.locationId}"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintHorizontal_bias="0.0"
+               app:layout_constraintStart_toStartOf="@+id/center_guider_line"
+               app:layout_constraintTop_toTopOf="@+id/location_id_tv"
+               android:visibility="@{viewModel.isSessionActive() ? View.VISIBLE : View.GONE}"/>
+
+           <TextView
+               android:id="@+id/location_details_value_tv"
+               android:layout_width="0dp"
+               android:layout_height="wrap_content"
+               tools:text="Bangalore"
+               android:text="@{viewModel.bookDetails.locationDetails}"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintHorizontal_bias="0.0"
+               app:layout_constraintStart_toStartOf="@+id/center_guider_line"
+               app:layout_constraintTop_toTopOf="@+id/location_details_tv"
+               android:visibility="@{viewModel.isSessionActive() ? View.VISIBLE : View.GONE}"/>
+
+           <TextView
+               android:id="@+id/price_value_tv"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               tools:text="20.0"
+               android:text="@{String.valueOf(viewModel.bookDetails.pricePerMin)}"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintHorizontal_bias="0.0"
+               app:layout_constraintStart_toStartOf="@+id/center_guider_line"
+               app:layout_constraintTop_toTopOf="@+id/price_tv"
+               android:visibility="@{viewModel.isSessionActive() ? View.VISIBLE : View.GONE}"/>
+
+           <TextView
+               android:id="@+id/welcome_msg_tv"
+               android:layout_width="0dp"
+               android:layout_height="wrap_content"
+               android:text="Welcome to Book store. Scan the Qr code to start a session"
+               android:textSize="18sp"
+               android:gravity="center"
+               android:layout_margin="8dp"
+               android:visibility="@{viewModel.isSessionActive() ? View.GONE : View.VISIBLE}"
+               app:layout_constraintBottom_toBottomOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toTopOf="parent"
+               tools:text="Welcome to Book store. Scan the Qr code to start a session"
+               tools:visibility="visible" />
+
+           <TextView
+               android:id="@+id/timer_txt"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:textSize="24sp"
+               app:layout_constraintBottom_toTopOf="@+id/end_session_btn"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/location_details_value_tv"
+               android:visibility="@{viewModel.isSessionActive() ? View.VISIBLE : View.GONE}"
+               tools:text="00:00:20" />
+           <androidx.constraintlayout.widget.Guideline
+               android:id="@+id/center_guider_line"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:orientation="vertical"
+               app:layout_constraintGuide_percent="0.5"
+               app:layout_constraintBottom_toBottomOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toTopOf="parent" />
+
+           <com.google.android.material.button.MaterialButton
+               android:id="@+id/end_session_btn"
+               android:layout_width="match_parent"
+               android:layout_height="42dp"
+               android:onClick="@{fragment::onEndSessionClick}"
+               android:text="@string/end_session"
+               android:textAllCaps="false"
+               app:cornerRadius="0dp"
+               android:insetBottom="0dp"
+               android:insetTop="0dp"
+               android:enabled="@{viewModel.isProgressbarVisible() ? false : true }"
+               android:visibility="@{viewModel.isSessionActive() ? View.VISIBLE : View.GONE}"
+               app:backgroundTint="@android:color/holo_red_light"
+               app:layout_constraintBottom_toTopOf="@+id/scan_now_btn"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toTopOf="parent"
+               app:layout_constraintVertical_bias="1.0" />
+
+           <com.google.android.material.button.MaterialButton
+               android:id="@+id/scan_now_btn"
+               android:layout_width="match_parent"
+               android:layout_height="42dp"
+               android:onClick="@{fragment::onScanNowButtonClick}"
+               android:text="@string/scan_now"
+               android:textAllCaps="false"
+               app:cornerRadius="0dp"
+               android:insetBottom="0dp"
+               android:insetTop="0dp"
+               android:visibility="@{viewModel.isSessionActive() ? View.GONE : View.VISIBLE}"
+               app:layout_constraintBottom_toBottomOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent" />
+
+           <ProgressBar
+               android:id="@+id/progress_bar"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:visibility="@{viewModel.isProgressbarVisible() ? View.VISIBLE : View.GONE}"
+               app:layout_constraintBottom_toBottomOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toTopOf="parent" />
+       </androidx.constraintlayout.widget.ConstraintLayout>
+   </ScrollView>
+</layout>

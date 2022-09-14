@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Book Reader</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="scan_now">Scan Now</string>
+    <string name="end_session">End Session</string>
+</resources>

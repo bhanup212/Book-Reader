@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="model"
+            type="com.book.reader.data.model.BookDetailsModel" />
+        <variable
+            name="requestModel"
+            type="com.book.reader.data.model.request.EndBookSessionRequestModel" />
+        <variable
+            name="totalPrice"
+            type="String" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/location_id_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Location Id:"
+            app:layout_constraintEnd_toStartOf="@+id/center_guider_line"
+            app:layout_constraintHorizontal_bias="0.37"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.2" />
+
+        <TextView
+            android:id="@+id/location_details_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Location Details:"
+            app:layout_constraintStart_toStartOf="@+id/price_tv"
+            app:layout_constraintTop_toBottomOf="@+id/price_tv" />
+
+        <TextView
+            android:id="@+id/price_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Price Per Min:"
+            app:layout_constraintStart_toStartOf="@+id/location_id_tv"
+            app:layout_constraintTop_toBottomOf="@+id/location_id_tv" />
+
+        <TextView
+            android:id="@+id/time_spent_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Time Spent:"
+            app:layout_constraintStart_toStartOf="@+id/location_details_tv"
+            app:layout_constraintTop_toBottomOf="@+id/location_details_value_tv" />
+
+        <TextView
+            android:id="@+id/time_spent_value_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/location_details_value_tv"
+            app:layout_constraintTop_toBottomOf="@+id/location_details_value_tv"
+            tools:text="200 min"
+            android:text="@{String.valueOf(requestModel.timeSpent)}"/>
+
+        <TextView
+            android:id="@+id/end_time_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="End Time:"
+            app:layout_constraintStart_toStartOf="@+id/time_spent_tv"
+            app:layout_constraintTop_toBottomOf="@+id/time_spent_tv" />
+
+        <TextView
+            android:id="@+id/end_time_value_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/time_spent_value_tv"
+            app:layout_constraintTop_toBottomOf="@+id/time_spent_value_tv"
+            tools:text="12:00 PM"
+            android:text="@{String.valueOf(requestModel.endTime)}"/>
+
+        <TextView
+            android:id="@+id/total_price_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total Price:"
+            app:layout_constraintStart_toStartOf="@+id/end_time_tv"
+            app:layout_constraintTop_toBottomOf="@+id/end_time_tv" />
+
+        <TextView
+            android:id="@+id/total_price_value_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/end_time_value_tv"
+            app:layout_constraintTop_toBottomOf="@+id/end_time_value_tv"
+            tools:text="200"
+            android:text="@{totalPrice}"/>
+
+        <TextView
+            android:id="@+id/location_id_value_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/center_guider_line"
+            app:layout_constraintTop_toTopOf="@+id/location_id_tv"
+            tools:text="ButterKnife"
+            android:text="@{model.locationId}"/>
+
+        <TextView
+            android:id="@+id/location_details_value_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/center_guider_line"
+            app:layout_constraintTop_toTopOf="@+id/location_details_tv"
+            tools:text="Bangalore"
+            android:text="@{model.locationDetails}"/>
+
+        <TextView
+            android:id="@+id/price_value_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/center_guider_line"
+            app:layout_constraintTop_toTopOf="@+id/price_tv"
+            tools:text="20.0"
+            android:text="@{String.valueOf(model.pricePerMin)}"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/center_guider_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintGuide_percent="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cancel_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:text="Cancel"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/confirm_btn"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/total_price_tv" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/confirm_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Confirm"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/cancel_btn"
+            app:layout_constraintTop_toTopOf="@+id/cancel_btn" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
